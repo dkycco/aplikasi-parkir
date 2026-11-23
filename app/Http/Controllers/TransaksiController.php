@@ -10,6 +10,7 @@ use App\Models\Kendaraan;
 use App\Models\AreaParkir;
 use App\Models\Tarif;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TransaksiController extends Controller
 {
@@ -216,7 +217,17 @@ class TransaksiController extends Controller
         }
     }
 
-    public function pdf() {
-        return view('pdf');
+    public function pdf(int $transaksi) {
+        $transaksi = Transaksi::with(['kendaraan', 'area', 'tarif', 'user'])
+            ->where('id', $transaksi)
+            ->where('status', 'keluar')
+            ->firstOrFail();
+
+        $filename = 'struk-transaksi-' . $transaksi->id . '.pdf';
+
+        return PDF::view('pdf', ['transaksi' => $transaksi])
+            ->paperSize(80, 160, 'mm')
+            ->name($filename)
+            ->download();
     }
 }

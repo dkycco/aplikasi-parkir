@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/transaksi', [TransaksiController::class, 'halaman_transaksi'])->name('halaman_transaksi');
     Route::post('/transaksi/tambah-transaksi/simpan', [TransaksiController::class, 'simpan_transaksi'])->name('simpan_transaksi');
     Route::patch('/transaksi/update-transaksi/{transaksi}', [TransaksiController::class, 'update_transaksi'])->name('update_transaksi');
-    Route::get('/transaksi/pdf', [TransaksiController::class, 'pdf'])->name('pdf');
+    Route::get('/transaksi/pdf/{transaksi}', [TransaksiController::class, 'pdf'])->name('pdf');
 
     Route::get('/rekap', [RekapController::class, 'halaman_rekap'])->name('halaman_rekap');
     Route::post('/rekap', [RekapController::class, 'cari_rekap'])->name('cari_rekap');
