@@ -7,6 +7,18 @@
     </div>
 </div>
 
+@if (session('success'))
+  <div class="alert alert-success d-flex justify-content-between align-items-center">
+    <span>{{ session('success') }}</span>
+
+    @if (session('cetak_transaksi_id'))
+      <a href="{{ route('pdf', session('cetak_transaksi_id')) }}" class="btn btn-sm btn-dark">
+        <i class="bi bi-printer"></i> Cetak Struk PDF
+      </a>
+    @endif
+  </div>
+@endif
+
 <div class="table-card-custom">
     <div class="table-header-control">
         <form action="{{ route('simpan_transaksi') }}" method="POST">
@@ -172,6 +184,13 @@
                         <td>{{ $item['waktu_keluar'] }}</td>
                         <td>{{ $item['durasi'] }}m</td>
                         <td>Rp {{ number_format((float) $item['biaya_total'], 0, ',', '.') }}</td>
+                        <td>
+                            <div class="d-flex justify-content-center gap-1">
+                                <a href="{{ route('pdf', $item['id']) }}" class="table-btn-action" title="Cetak Struk" >
+                                    <i class="bi bi-printer"></i>
+                                </a>
+                            </div>
+                        </td>
                     </tr>
                 @empty
                     <tr>

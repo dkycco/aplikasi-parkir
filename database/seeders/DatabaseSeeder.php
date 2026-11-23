@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
             'manage-area',
             'manage-kendaraan',
             'log',
-            'struk',
             'transaksi',
             'rekap',
         ];
@@ -37,13 +36,13 @@ class DatabaseSeeder extends Seeder
         $adminRole->syncPermissions(Permission::all());
 
         $petugasRole->syncPermissions([
-            'transaksi',
-            'struk',
+            'manage-kendaraan',
+            'transaksi'
         ]);
 
         $ownerRole->syncPermissions([
             'rekap',
-            'log',
+            'log'
         ]);
 
         $admin = User::firstOrCreate([

@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    {{-- <title>Struk Parkir #{{ $transaksi->id }}</title> --}}
+    <title>Struk Parkir #{{ $transaksi->id }}</title>
     <style>
+        @page {
+            margin: 4mm;
+        }
         body {
             font-family: Arial, Helvetica, sans-serif;
             font-size: 12px;
@@ -65,7 +68,10 @@
 
 <body>
     <div class="center">
-        <img height="50px" src="{{ asset('assets/images/favicon.ico') }}" alt="">
+        @php
+            $logoPath = public_path('assets/images/favicon.ico');
+        @endphp
+        <img height="50px" src="{{ $logoPath }}" alt="">
         <div class="title">APLIKASI PARKIR</div>
 
         <div class="text-muted alamat">Jl. Perum Mekarsari No. 1, Mekarjaya, Kec. Sumedang Utara, Kabupaten Sumedang, Jawa Barat</div>

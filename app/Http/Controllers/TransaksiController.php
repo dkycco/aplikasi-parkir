@@ -205,7 +205,8 @@ class TransaksiController extends Controller
             });
 
             return redirect('transaksi')
-                ->with('success', 'Kendaraan berhasil keluar. Durasi: ' . $transaksi->durasi . ' jam, Total: Rp ' . number_format((float) $transaksi->biaya_total, 0, ',', '.'));
+                ->with('success', 'Kendaraan berhasil keluar. Durasi: ' . $transaksi->durasi . ' jam, Total: Rp ' . number_format((float) $transaksi->biaya_total, 0, ',', '.'))
+                ->with('cetak_transaksi_id', $transaksi->id);
         } catch (ValidationException $e) {
             throw $e;
         } catch (\Throwable $th) {
@@ -223,11 +224,14 @@ class TransaksiController extends Controller
             ->where('status', 'keluar')
             ->firstOrFail();
 
-        $filename = 'struk-transaksi-' . $transaksi->id . '.pdf';
+        $timezone = config('app.timezone', 'Asia/Jakarta');
+        $waktuCetak = now($timezone)->format('YmdHi');
 
-        return PDF::view('pdf', ['transaksi' => $transaksi])
-            ->paperSize(80, 160, 'mm')
-            ->name($filename)
-            ->download();
+        $filename = 'struk-transaksi-' . $transaksi->id . '_' . $waktuCetak . '.pdf';
+
+        $pdf = Pdf::loadView('pdf', ['transaksi' => $transaksi])
+            ->setPaper([0, 0, 226.77, 453.54], 'portrait');
+
+        return $pdf->download($filename);
     }
 }

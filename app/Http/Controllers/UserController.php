@@ -33,12 +33,14 @@ class UserController extends Controller
         ]);
 
         try {
-           User::create([
+           $user = User::create([
                 'nama_lengkap' => $validasi['nama-lengkap'],
                 'username' => $validasi['username'],
                 'password' => bcrypt($validasi['password']),
                 'role' => $validasi['role']
            ]);
+
+           $user->assignRole($validasi['role']);
 
            return redirect('user');
         } catch (\Thowable) {

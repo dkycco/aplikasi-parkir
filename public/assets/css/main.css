@@ -1837,7 +1837,6 @@ span.flatpickr-weekday {
 }
 
 .login-card:hover {
-    transform: translateY(-2px);
     box-shadow: 0 30px 60px rgba(11, 19, 15, 0.12);
 }
 
@@ -2037,7 +2036,6 @@ span.flatpickr-weekday {
 .btn-login:hover {
     background-color: var(--brand-forest-dark);
     color: #ffffff;
-    transform: translateY(-1px);
     box-shadow: 0 4px 12px var(--brand-lime-translucent);
 }
 
