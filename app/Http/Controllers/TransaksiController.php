@@ -215,4 +215,8 @@ class TransaksiController extends Controller
                 ->withErrors(['error' => 'Gagal memproses transaksi keluar: ' . $th->getMessage()]);
         }
     }
+
+    public function pdf() {
+        return view('pdf');
+    }
 }
