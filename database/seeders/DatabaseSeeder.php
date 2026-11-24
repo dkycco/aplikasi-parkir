@@ -54,6 +54,24 @@ class DatabaseSeeder extends Seeder
 
         $admin->assignRole($adminRole);
 
+        $petugas = User::firstOrCreate([
+            'nama_lengkap' => 'Petugas',
+            'username' => 'petugas',
+            'password' => bcrypt('petugas'),
+            'role' => 'petugas'
+        ]);
+
+        $petugas->assignRole($petugasRole);
+
+        $owner = User::firstOrCreate([
+            'nama_lengkap' => 'Diki Muhamad A',
+            'username' => 'owner',
+            'password' => bcrypt('owner'),
+            'role' => 'owner'
+        ]);
+
+        $owner->assignRole($ownerRole);
+
         Tarif::firstOrCreate([
             'jenis_kendaraan' => 'motor',
             'tarif_perjam' => '0'

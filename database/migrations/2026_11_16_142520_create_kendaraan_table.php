@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kendaraan', function (Blueprint $table) {
             $table->id();
             $table->string('plat_nomor')->unique();
-            $table->enum('jenis_kendaraan', ['motor', 'mobil', 'lainnnya']);
+            $table->enum('jenis_kendaraan', ['motor', 'mobil', 'lainnya']);
             $table->string('warna');
             $table->string('pemilik');
             $table->timestamps();
